@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SOC Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  background: #020617;
+  padding: 15px;
+}
+
+.navbar div {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.navbar div:hover {
+  color: cyan;
+}
+
+.page {
+  display: none;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+.alert-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.box {
+  background: #1e293b;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.chart {
+  background: #1e293b;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.ip-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ip-box {
+  background: #1e293b;
+  padding: 20px;
+  width: 40%;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Smart Snort</h1>
+
+<div class="navbar">
+  <div onclick="showPage('dashboard')">Dashboard</div>
+  <div onclick="showPage('alert')">Alert</div>
+  <div onclick="showPage('analysis')">Analysis</div>
+  <div onclick="showPage('settings')">Settings</div>
+</div>
+
+<div id="home" class="page active">
+  <h2 style="text-align:center;">Welcome</h2>
+</div>
+
+<div id="dashboard" class="page">
+
+  <div class="alert-row">
+    <div class="box">0<br>Critical</div>
+    <div class="box">0<br>High</div>
+    <div class="box">0<br>Medium</div>
+    <div class="box">0<br>Low</div>
+    <div class="box">0<br>Total</div>
+  </div>
+
+  <div class="chart">
+    <h3>Severity Distribution</h3>
+    <canvas id="severityChart"></canvas>
+  </div>
+
+  <div class="chart">
+    <h3>Attack Type</h3>
+    <canvas id="attackChart"></canvas>
+  </div>
+
+  <div class="chart">
+    <h3>Credibility Distribution</h3>
+    <canvas id="credibilityChart"></canvas>
+  </div>
+
+  <div class="chart">
+    <h3>Alert Timeline</h3>
+    <canvas id="timelineChart"></canvas>
+  </div>
+
+  <div class="ip-section">
+    <div class="ip-box">
+      <h3>Top Source IPs</h3>
+      <canvas id="sourceIPChart"></canvas>
+    </div>
+
+    <div class="ip-box">
+      <h3>Top Target IPs</h3>
+      <canvas id="targetIPChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<div id="alert" class="page"><h2>Alert Page</h2></div>
+<div id="analysis" class="page"><h2>Analysis Page</h2></div>
+<div id="settings" class="page"><h2>Settings Page</h2></div>
+
+<script>
+function showPage(pageId) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+new Chart(document.getElementById("severityChart"), {
+  type: 'pie',
+  data: {
+    labels: ['Critical', 'High', 'Medium', 'Low'],
+    datasets: [{
+      data: [10, 20, 30, 40]
+    }]
+  }
+});
+
+new Chart(document.getElementById("attackChart"), {
+  type: 'pie',
+  data: {
+    labels: ['SQL Injection', 'XSS', 'DDoS', 'Phishing'],
+    datasets: [{
+      data: [15, 25, 35, 25]
+    }]
+  }
+});
+
+new Chart(document.getElementById("credibilityChart"), {
+  type: 'bar',
+  data: {
+    labels: ['True Positive', 'False Positive'],
+    datasets: [{
+      data: [60, 40]
+    }]
+  }
+});
+
+new Chart(document.getElementById("timelineChart"), {
+  type: 'line',
+  data: {
+    labels: ['1AM','4AM','8AM','12PM','4PM','8PM'],
+    datasets: [{
+      data: [5, 10, 8, 15, 7, 12]
+    }]
+  }
+});
+
+new Chart(document.getElementById("sourceIPChart"), {
+  type: 'bar',
+  data: {
+    labels: ['192.168.1.1','10.0.0.2','172.16.0.3'],
+    datasets: [{
+      data: [50, 30, 20]
+    }]
+  }
+});
+
+new Chart(document.getElementById("targetIPChart"), {
+  type: 'bar',
+  data: {
+    labels: ['8.8.8.8','1.1.1.1','9.9.9.9'],
+    datasets: [{
+      data: [40, 25, 35]
+    }]
+  }
+});
+</script>
+
+</body>
+</html>
