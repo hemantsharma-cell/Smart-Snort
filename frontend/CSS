@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  background: #020617;
+  padding: 15px;
+}
+
+.navbar div {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.navbar div:hover {
+  color: cyan;
+}
+
+/* Pages */
+.page {
+  display: none;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+/* Boxes */
+.alert-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  background: #1e293b;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Charts */
+.chart {
+  background: #1e293b;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* IP Section */
+.ip-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ip-box {
+  background: #1e293b;
+  padding: 20px;
+  width: 40%;
+  border-radius: 10px;
+}
