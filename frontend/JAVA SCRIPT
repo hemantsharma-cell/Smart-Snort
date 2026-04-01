@@ -1,0 +1,74 @@
+// Page Switch
+function showPage(pageId) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+/* Charts */
+
+// Severity
+new Chart(document.getElementById("severityChart"), {
+  type: 'pie',
+  data: {
+    labels: ['Critical', 'High', 'Medium', 'Low'],
+    datasets: [{
+      data: [10, 20, 30, 40]
+    }]
+  }
+});
+
+// Attack
+new Chart(document.getElementById("attackChart"), {
+  type: 'pie',
+  data: {
+    labels: ['SQL Injection', 'XSS', 'DDoS', 'Phishing'],
+    datasets: [{
+      data: [15, 25, 35, 25]
+    }]
+  }
+});
+
+// Credibility
+new Chart(document.getElementById("credibilityChart"), {
+  type: 'bar',
+  data: {
+    labels: ['True Positive', 'False Positive'],
+    datasets: [{
+      data: [60, 40]
+    }]
+  }
+});
+
+// Timeline
+new Chart(document.getElementById("timelineChart"), {
+  type: 'line',
+  data: {
+    labels: ['1AM','4AM','8AM','12PM','4PM','8PM'],
+    datasets: [{
+      data: [5, 10, 8, 15, 7, 12]
+    }]
+  }
+});
+
+// Source IP
+new Chart(document.getElementById("sourceIPChart"), {
+  type: 'bar',
+  data: {
+    labels: ['192.168.1.1','10.0.0.2','172.16.0.3'],
+    datasets: [{
+      data: [50, 30, 20]
+    }]
+  }
+});
+
+// Target IP
+new Chart(document.getElementById("targetIPChart"), {
+  type: 'bar',
+  data: {
+    labels: ['8.8.8.8','1.1.1.1','9.9.9.9'],
+    datasets: [{
+      data: [40, 25, 35]
+    }]
+  }
+});
